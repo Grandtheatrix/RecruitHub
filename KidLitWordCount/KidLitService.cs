@@ -31,17 +31,14 @@ namespace KidLitWordCount.Services
 
                 cmd.Parameters.AddWithValue("@Query", query.Text );
 
-                // the command is all set up, let's run it (and get the results)!
-
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    List<Entry> books = new List<Entry>(); // we say "list of entry"
+                    List<Entry> books = new List<Entry>();
 
-                    // loop until we've received all rows
+                    
                     while (reader.Read())
                     {
-                        // take the one row that we're looking at and put that
-                        // data into an instance of the model
+                        
                         Entry book = new Entry();
                   
                         book.Title = (string)reader["Title"];
@@ -49,8 +46,7 @@ namespace KidLitWordCount.Services
 
                         books.Add(book);
                     }
-
-                    // by the time it gets here, we have the full list of cars built
+                    
                     if (books.Count != 0 )
                     {
                         return books;
